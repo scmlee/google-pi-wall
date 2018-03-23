@@ -17,17 +17,20 @@
 
 <body>
     <div style="float:left; width:20%;height:100%;">
-        <webview src="https://www.google.ca" autoresize style="height:30%;"></webview>
-        <webview src="https://www.google.ca" autoresize style="height:70%;"></webview>
+        <webview id="time-webview" src="time.html" autoresize style="height:30%;"></webview>
+        <webview id="weather-webview" src="weather.html" autoresize style="height:70%;"></webview>
     </div>
     <div style="float:left; width:80%; height:100%;">
-        <webview src="https://calendar.google.com/calendar/r" autoresize style="height:100%;"></webview>
+        <webview
+            nodeintegration
+            disablewebsecurity
+            id="calendar-webview" src="https://calendar.google.com/calendar/r" autoresize style="height:100%;"></webview>
     </div>
 
-    <!-- <script>
+    <script>
       // You can also require other files to run in this process
       require('./renderer.js')
-    </script> -->
+    </script>
 </body>
 
 </html>
