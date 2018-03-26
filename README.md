@@ -1,4 +1,4 @@
-# Google-Pi-Wall
+# pi-wall
 Electron-based dashboard to show mainly a Google calendar and some other useful information
 
 ## Disclaimer
