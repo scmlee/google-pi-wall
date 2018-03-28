@@ -7,11 +7,15 @@
     const url = require('url');
     var fs = require('fs');
 
-    var filepath = "./darkcal.css";
-    cssToAppend = fs.readFileSync(filepath, { encoding : "utf-8", flag: "r"});
+    var webview = document.getElementById("weather-webview");
+    webview.addEventListener("dom-ready", function(){ webview.openDevTools(); });
 
-    document.getElementById("calendar-webview").addEventListener("did-finish-load", function() {
-        webview = document.getElementById("calendar-webview");
-        webview.insertCSS(cssToAppend);
-    });
+
+    // var filepath = "./darkcal.css";
+    // cssToAppend = fs.readFileSync(filepath, { encoding : "utf-8", flag: "r"});
+
+    // document.getElementById("calendar-webview").addEventListener("did-finish-load", function() {
+    //     webview = document.getElementById("calendar-webview");
+    //     webview.insertCSS(cssToAppend);
+    // });
 })();

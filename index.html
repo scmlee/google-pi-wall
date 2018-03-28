@@ -3,33 +3,23 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
-    <style>
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
+    <title>Pi Wall</title>
+    <link rel="stylesheet" href="css/pi-wall.css" />
 </head>
 
 <body>
-    <div style="float:left; width:20%;height:100%;">
-        <webview id="time-webview" src="time.html" autoresize style="height:30%;"></webview>
-        <webview id="weather-webview" src="weather.html" autoresize style="height:70%;"></webview>
+    <div id="info-row">
+        <webview nodeintegration id="time-webview" src="time.html" autoresize></webview>
+        <webview nodeintegration id="weather-webview" src="weather.html" autoresize></webview>
     </div>
-    <div style="float:left; width:80%; height:100%;">
-        <webview
-            nodeintegration
-            disablewebsecurity
-            id="calendar-webview" src="https://calendar.google.com/calendar/r" autoresize style="height:100%;"></webview>
+    <div id="calendar-row">
+        <webview nodeintegration disablewebsecurity id="calendar-webview" src="https://calendar.google.com/calendar/r" autoresize></webview>
+        <!-- <webview id="calendar-webview" src="time.html" autoresize  style="float:left; width:100%; height:85%; margin:0px; padding:0px;"></webview> -->
     </div>
 
     <script>
-      // You can also require other files to run in this process
-      require('./renderer.js')
+        // You can also require other files to run in this process
+        require('./renderer.js')
     </script>
 </body>
 

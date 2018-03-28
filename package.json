@@ -1,25 +1,19 @@
 {
-  "name": "electron-quick-start",
+  "name": "pi-wall",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "Electron-based dashboard for running on a Raspberry Pi",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/electron/electron-quick-start",
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
-  ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "scmlee",
+  "repository": "https://github.com/scmlee/pi-wall",
   "devDependencies": {
-    "electron": "~1.8.2"
+    "electron": "~1.7.1"
   },
   "dependencies": {
-    "johnny-five": "^0.14.1"
+    "johnny-five": "^0.14.1",
+    "moment": "^2.21.0",
+    "openweather-apis": "^3.3.5"
   }
 }

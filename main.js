@@ -10,6 +10,18 @@ const url = require('url')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
+let backgroundWindow;
+
+function createBackgroundWindow() {
+	const win = new BrowserWindow({
+		show: false
+	});
+
+	win.loadURL(`file://${__dirname}/background/background.html`);
+
+	return win;
+}
+
 
 function createWindow () {
   // Create the browser window.
@@ -26,8 +38,11 @@ function createWindow () {
     slashes: true
   }))
 
+  //Maximize the window
+  mainWindow.setFullScreen(true);
+
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools({ mode : "undocked"});
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -56,7 +71,8 @@ app.on('activate', function () {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) {
-    createWindow()
+    createWindow();
+    backgroundWindow = createBackgroundWindow();
   }
 })
 
