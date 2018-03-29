@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html id="main-html">
 
 <head>
     <meta charset="UTF-8">
@@ -7,14 +7,16 @@
     <link rel="stylesheet" href="css/pi-wall.css" />
 </head>
 
-<body>
-    <div id="info-row">
-        <webview nodeintegration id="time-webview" src="time.html" autoresize></webview>
-        <webview nodeintegration id="weather-webview" src="weather.html" autoresize></webview>
-    </div>
-    <div id="calendar-row">
-        <webview nodeintegration disablewebsecurity id="calendar-webview" src="https://calendar.google.com/calendar/r" autoresize></webview>
-        <!-- <webview id="calendar-webview" src="time.html" autoresize  style="float:left; width:100%; height:85%; margin:0px; padding:0px;"></webview> -->
+<body id="main-body" class="full-width-height">
+    <div id="main-container" class="full-width-height">
+        <div id="info-row">
+            <webview nodeintegration id="time-webview" class="full-width-height" src="time.html" autoresize></webview>
+            <webview nodeintegration id="weather-webview" class="full-width-height" src="weather.html" autoresize></webview>
+        </div>
+        <div id="calendar-row">
+            <webview nodeintegration disablewebsecurity id="calendar-webview" class="full-width-height" src="https://calendar.google.com/calendar/r" autoresize></webview>
+            <!-- <webview id="calendar-webview" src="time.html" autoresize  style="float:left; width:100%; height:85%; margin:0px; padding:0px;"></webview> -->
+        </div>
     </div>
 
     <script>

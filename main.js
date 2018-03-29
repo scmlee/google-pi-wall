@@ -22,7 +22,6 @@ function createBackgroundWindow() {
 	return win;
 }
 
-
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
@@ -34,15 +33,16 @@ function createWindow () {
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
+    // pathname: path.join(__dirname, 'weather.html'),
     protocol: 'file:',
     slashes: true
   }))
 
   //Maximize the window
-  mainWindow.setFullScreen(true);
+  //mainWindow.setFullScreen(true);
 
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools({ mode : "undocked"});
+  mainWindow.webContents.openDevTools(); //{ mode : "undocked"});
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {

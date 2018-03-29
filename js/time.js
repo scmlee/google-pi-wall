@@ -3,13 +3,10 @@
     const moment = require('moment');
 
     function updateDateTime() {
-        dateStr = moment().format("dddd, MMMM D YYYY");
-        timeStr = moment().format("h:mm:ss A");
-
-        document.querySelector("#datetime #date").innerText = dateStr; // + " " + timeStr;
-        document.querySelector("#datetime #time").innerText = timeStr; // + " " + timeStr;
+        document.querySelector("#datetime #date").innerText = moment().format("dddd, MMMM D YYYY"); 
+        document.querySelector("#datetime #time").innerText =  moment().format("h:mm A"); 
     }
 
     updateDateTime();
-    setInterval(updateDateTime, 1000);
+    setInterval(updateDateTime, 5000);
 })();

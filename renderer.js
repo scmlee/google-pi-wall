@@ -8,7 +8,7 @@
     var fs = require('fs');
 
     var webview = document.getElementById("weather-webview");
-    webview.addEventListener("dom-ready", function(){ webview.openDevTools(); });
+    //webview.addEventListener("dom-ready", function(){ webview.openDevTools(); });
 
 
     // var filepath = "./darkcal.css";

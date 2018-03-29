@@ -1,16 +1,36 @@
-html,
-body {
+:root {
+    --info-row-size: 10%;
+    --weather-num-blocks: 5;
+  }
+
+.full-width-height {
     width: 100%;
     height: 100%;
-    margin: 0;
-    padding: 0;
+}
 
+html,body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
     font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+html#main-html {
+    width: calc(100% - (20px * 2));
+    height: calc(100% - (20px * 2));
+
+    padding: 20px;
+    font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 12px;
+
+    overflow: hidden;
 }
 
 div#info-row {
     width: 100%;
-    height: 10%;
+    height: var(--info-row-size);
 }
 
 div#info-row webview {
@@ -19,49 +39,76 @@ div#info-row webview {
 }
 
 div#info-row webview#time-webview {
-    width: 40%;
+    width: 45%;
 }
 
 div #info-row webview#weather-webview {
-    width: 60%;
+    width: 55%;
 }
 
 div#calendar-row {
-    width: 96%;
-    height: 84%;
-    margin: 2%;
+    width: 100%;
+    height: calc(100% - var(--info-row-size));
 }
 
 div#calendar-row webview#calendar-webview {
     float: left;
-    width: 100%;
-    height: 100%;
 }
 
 
 /* ========================================== */
 
-.header-body {
-    /* background-color: #333; */
-}
-
-div#datetime, div#weather {
-    padding: 20px;
-}
-
 div#datetime #date{
-    font-size: 24pt;
+    font-size: 26pt;
     text-transform: uppercase;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 div#datetime #time {
-    font-size: 20pt;
-    font-weight: 100;
+    font-size: 24pt;
+    font-weight: 200;
 }
 
 div#weather {
     text-align: right;
     font-size: 20pt;
     font-weight: 100;
+}
+
+div#weather > div#forecast { 
+    display: inline-block;
+    width: calc(100% / var(--weather-num-blocks));
+}
+
+div#weather > div#forecast > span#time {
+    display: block;
+}
+
+div#forecast.current > span#temp {
+    font-size: 3em;
+}
+
+div#forecast > span#time {
+    font-size: 10pt;
+}
+
+div#forecast > span#temp{
+    font-size: 2em;
+    font-weight: 300;
+}
+
+div#forecast > span#temp > span#temp-units {
+    display: inline;
+    font-size: 0.8em;
+    vertical-align: top;
+    font-weight: 100;
+}
+
+div#forecast > span#weather{
+    font-size: 8pt;
+}
+
+div#forecast > span#weather > i.wi {
+    font-size: 3em;
+    color: #AAA;
 }
