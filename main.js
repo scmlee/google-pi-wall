@@ -39,7 +39,7 @@ function createWindow () {
   }))
 
   //Maximize the window
-  //mainWindow.setFullScreen(true);
+ // mainWindow.setFullScreen(true);
   mainWindow.maximize();
 
   // Open the DevTools.
@@ -73,7 +73,7 @@ app.on('activate', function () {
   // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) {
     createWindow();
-    backgroundWindow = createBackgroundWindow();
+    //backgroundWindow = createBackgroundWindow();
   }
 })
 

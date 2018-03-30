@@ -7,7 +7,7 @@
     weather.setLang('en');
     weather.setCityId(6167865);
     weather.setUnits('metric');
-    weather.setAPPID("dde2509e29d41e5299304dad3099db68");
+    weather.setAPPID(process.env.openweather_api_key); //"dde2509e29d41e5299304dad3099db68");
 
     // weather.getSmartJSON(function(err, smart) {
     //     //document.querySelector("div#weather").innerText = Math.round(smart.temp) + " " + smart.description;

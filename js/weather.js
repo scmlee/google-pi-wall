@@ -38,9 +38,10 @@
         weather.setCityId(6167865);
         weather.setUnits('metric');
         weather.setAPPID(process.env.openweather_api_key);
-
+	
+	console.log(process.env.openweather_api_key);
         
-
+	document.querySelector("div#weather").innerText = "Querying current weather...";
         weather.getSmartJSON(function(err, smart) {
             var forecastDiv = "";
 
@@ -51,6 +52,7 @@
             forecastDiv += "<span id=\"weather\" desc=\"" + smart.description + "\"><i class=\"" + getWeatherIconClass(smart.weathercode) +  "\"></i></span>";
             forecastDiv += "</div>";
 
+            document.querySelector("div#weather").innerText = "Querying weather forecast...";
             //Grab forecast for near future...
             weather.getWeatherForecast(function(err, forecast) {
                 var currForecastIter = 0;
@@ -75,5 +77,5 @@
         });
     }
 
-    updateWeather();
+    setTimeout(updateWeather, 1000);
 })();
