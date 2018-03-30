@@ -29,10 +29,17 @@
     function updateWeather() {
         console.log("Attemping to update the weather...");
 
+        if (!process.env.openweather_api_key || process.env.openweather_api_key == "") {
+            document.querySelector("div#weather").innerText = "OpenWeatherMaps API Key not defined!";
+            return;
+        }
+
         weather.setLang('en');
         weather.setCityId(6167865);
         weather.setUnits('metric');
         weather.setAPPID(process.env.openweather_api_key);
+
+        
 
         weather.getSmartJSON(function(err, smart) {
             var forecastDiv = "";
