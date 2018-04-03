@@ -10,17 +10,17 @@ const url = require('url')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
-let backgroundWindow;
+// let backgroundWindow;
 
-function createBackgroundWindow() {
-	const win = new BrowserWindow({
-		show: false
-	});
+// function createBackgroundWindow() {
+// 	const win = new BrowserWindow({
+// 		show: false
+// 	});
 
-	win.loadURL(`file://${__dirname}/background/background.html`);
+// 	win.loadURL(`file://${__dirname}/background/background.html`);
 
-	return win;
-}
+// 	return win;
+// }
 
 function createWindow () {
   // Create the browser window.
@@ -33,7 +33,6 @@ function createWindow () {
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
-    // pathname: path.join(__dirname, 'weather.html'),
     protocol: 'file:',
     slashes: true
   }))
@@ -43,7 +42,7 @@ function createWindow () {
   mainWindow.maximize();
 
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools(); //{ mode : "undocked"});
+  mainWindow.webContents.openDevTools(); //{ mode : "undocked"});
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {

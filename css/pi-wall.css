@@ -34,16 +34,16 @@ div#info-row {
     height: var(--info-row-size);
 }
 
-div#info-row webview {
+div#info-row > div {
     float: left;
     height: 100%;
 }
 
-div#info-row webview#time-webview {
+div#info-row div#datetime-panel {
     width: 45%;
 }
 
-div #info-row webview#weather-webview {
+div#info-row div#weather-panel {
     width: 55%;
 }
 

@@ -5,7 +5,10 @@
     const numPeriodsToForecast = 4;
     const weatherRefreshMin = 15;
 
-    console.log(weatherIcons);
+    function updateDateTime() {
+        document.querySelector("#datetime #date").innerText = moment().format("dddd, MMMM D YYYY"); 
+        document.querySelector("#datetime #time").innerText =  moment().format("h:mm A"); 
+    }
 
     /**
      * Returns Font-awesome class for the weather condition
@@ -22,7 +25,6 @@
 
         // Finally tack on the prefix.
         icon = prefix + icon;
-
         return icon;
     }
 
@@ -78,4 +80,7 @@
     }
 
     setTimeout(updateWeather, 1000);
+
+    updateDateTime();
+    setInterval(updateDateTime, 5000);
 })();
