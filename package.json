@@ -10,9 +10,12 @@
   "repository": "https://github.com/scmlee/pi-wall",
   "devDependencies": {},
   "dependencies": {
+    "debug-http": "^1.1.0",
     "electron": "~1.7.1",
     "moment": "^2.21.0",
-    "openweather-apis": "^3.3.5"
+    "npm": "^5.8.0",
+    "openweather-apis": "^3.3.5",
+    "request": "^2.85.0"
   },
   "optionalDependencies": {
     "johnny-five": "^0.14.1",

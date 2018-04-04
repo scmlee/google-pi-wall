@@ -1,14 +1,22 @@
 (function() {
-    const weather = require('openweather-apis');
     const moment = require('moment');
     const weatherIcons = require("../weatherIcons.json");
     const numPeriodsToForecast = 4;
     const weatherRefreshMin = 15;
 
+    // const debugHttp = require('debug-http');
+    // debugHttp();
+
+    // console.log(process.env.http_proxy);
+
+    var request = require('request');
+
     function updateDateTime() {
-        document.querySelector("#datetime #date").innerText = moment().format("dddd, MMMM D YYYY"); 
-        document.querySelector("#datetime #time").innerText =  moment().format("h:mm A"); 
+        document.querySelector("#datetime #date").innerText = moment().format("dddd, MMMM D YYYY");
+        document.querySelector("#datetime #time").innerText = moment().format("h:mm A");
     }
+
+    var currentTempOpenWeatherObj, forecastOpenWeatherObj;
 
     /**
      * Returns Font-awesome class for the weather condition
@@ -20,12 +28,64 @@
 
         // If we are not in the ranges mentioned above, add a day/night prefix.
         if (!(code > 699 && code < 800) && !(code > 899 && code < 1000)) {
-          icon = 'day-' + icon;
+            icon = 'day-' + icon;
         }
 
         // Finally tack on the prefix.
         icon = prefix + icon;
         return icon;
+    }
+
+    function getOpenWeatherAPIUrl(openweatherReq, urlEndPoint) {
+        var url = "http://api.openweathermap.org";
+
+        url += urlEndPoint;
+        url += "?id=" + openweatherReq.cityId;
+        url += "&units=" + openweatherReq.units;
+        url += "&lang=" + openweatherReq.lang;
+        url += "&mode=json";
+        url += "&APPID=" + process.env.openweather_api_key;
+
+        return url;
+    }
+
+    function updateCurrentTempHTML() {
+        if (!currentTempOpenWeatherObj) {
+            console.log("No current temp details to update");
+            return;
+        }
+
+        var currentWeatherDiv = "";
+        currentWeatherDiv += "<div id=\"forecast\" class=\"current\">";
+        currentWeatherDiv += "<span id=\"temp\">" + Math.round(currentTempOpenWeatherObj.main.temp) + "<span id=\"temp-units\">&deg;</span></span>";
+        currentWeatherDiv += "<span id=\"weather\" desc=\"" + currentTempOpenWeatherObj.weather[0].description + "\"><i class=\"" + getWeatherIconClass(currentTempOpenWeatherObj.weather[0].id) + "\"></i></span>";
+        currentWeatherDiv += "</div>";
+
+        document.querySelector("div#weather #current-container").innerHTML = currentWeatherDiv;
+    }
+
+    function updateForecastHTML() {
+        if (!updateForecastHTML) {
+            console.log("No forecast details to update");
+            return;
+        }
+
+        var forecastWeatherDiv = "";
+        var currForecastIter = 0;
+
+        for (currForecastIter = 0; currForecastIter < numPeriodsToForecast; currForecastIter++) {
+            forecastDetails = forecastOpenWeatherObj.list[currForecastIter];
+
+            //console.log(forecastDetails);
+            forecastWeatherDiv += "<div id=\"forecast\">";
+            forecastWeatherDiv += "<span id=\"time\">" + moment(forecastDetails.dt, "X").fromNow() + "</span>";
+            forecastWeatherDiv += "<span id=\"temp\">" + Math.round(forecastDetails.main.temp) + "<span id=\"temp-units\">&deg;</span></span>";
+            forecastWeatherDiv += "<span id=\"weather\" desc=\"" + forecastDetails.weather[0].id + "\"><i class=\"" + getWeatherIconClass(forecastDetails.weather[0].id) + "\"></i></span>";
+            forecastWeatherDiv += "</div>"
+        }
+
+        //Update the web page
+        document.querySelector("div#weather #forecast-container").innerHTML = forecastWeatherDiv;
     }
 
     function updateWeather() {
@@ -36,51 +96,51 @@
             return;
         }
 
-        weather.setLang('en');
-        weather.setCityId(6167865);
-        weather.setUnits('metric');
-        weather.setAPPID(process.env.openweather_api_key);
-	
-	console.log(process.env.openweather_api_key);
-        
-	document.querySelector("div#weather").innerText = "Querying current weather...";
-        weather.getSmartJSON(function(err, smart) {
-            var forecastDiv = "";
+        var openweatherReq = {
+            lang: 'en',
+            cityId: 6167865,
+            units: 'metric',
+            appId: process.env.openweather_api_key
+        };
 
-            // console.log("Got the weather: " + JSON.stringify(smart));
+        request({
+            'url': getOpenWeatherAPIUrl(openweatherReq, '/data/2.5/weather'),
+            'proxy': process.env.http_proxy
+        }, function(error, response, body) {
 
-            forecastDiv += "<div id=\"forecast\" class=\"current\">";
-            forecastDiv += "<span id=\"temp\">" + Math.round(smart.temp) + "<span id=\"temp-units\">&deg;</span></span>";
-            forecastDiv += "<span id=\"weather\" desc=\"" + smart.description + "\"><i class=\"" + getWeatherIconClass(smart.weathercode) +  "\"></i></span>";
-            forecastDiv += "</div>";
+            if (error || response.statusCode != 200) {
+                document.querySelector("div#weather #current-container").innerHTML = "!";
+                return;
+            }
 
-            document.querySelector("div#weather").innerText = "Querying weather forecast...";
-            //Grab forecast for near future...
-            weather.getWeatherForecast(function(err, forecast) {
-                var currForecastIter = 0;
-
-                for (currForecastIter = 0; currForecastIter < numPeriodsToForecast; currForecastIter++) {
-                    forecastDetails = forecast.list[currForecastIter];
-
-                    //console.log(forecastDetails);
-                    forecastDiv += "<div id=\"forecast\">";
-                    forecastDiv += "<span id=\"time\">" + moment(forecastDetails.dt, "X").fromNow() + "</span>";
-                    forecastDiv += "<span id=\"temp\">" + Math.round(forecastDetails.main.temp) + "<span id=\"temp-units\">&deg;</span></span>";
-                    forecastDiv += "<span id=\"weather\" desc=\"" + forecastDetails.weather[0].id + "\"><i class=\"" + getWeatherIconClass(forecastDetails.weather[0].id) +  "\"></i></span>";
-                    forecastDiv += "</div>"
-                }
-
-                //Update the web page
-                document.querySelector("div#weather").innerHTML = forecastDiv;
-
-                //Update again in 30 minutes
-                setTimeout(updateWeather, 1000 * 60 * weatherRefreshMin);
-            });
+            currentTempOpenWeatherObj = JSON.parse(body);
+            updateCurrentTempHTML();
         });
+
+        request({
+            'url': getOpenWeatherAPIUrl(openweatherReq, '/data/2.5/forecast'),
+            'proxy': process.env.http_proxy
+        }, function(error, response, body) {
+
+            if (error || response.statusCode != 200) {
+                document.querySelector("div#weather #forecast-container").innerHTML = "!";
+                return;
+            }
+
+            forecastOpenWeatherObj = JSON.parse(body);
+            updateForecastHTML();
+        });
+
+        //Update again in 30 minutes
+        setTimeout(updateWeather, 1000 * 60 * weatherRefreshMin);
     }
 
-    setTimeout(updateWeather, 1000);
-
+    //Refresh the date and weather
     updateDateTime();
-    setInterval(updateDateTime, 5000);
+    updateWeather();
+
+    //Schedule updates to the HTML
+    //setInterval(updateCurrentTempHTML, 1000 * 60);
+    setInterval(updateForecastHTML, 1000 * 60);
+    setInterval(updateDateTime, 10000);
 })();

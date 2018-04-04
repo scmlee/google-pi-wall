@@ -76,12 +76,13 @@ div#weather {
     font-weight: 100;
 }
 
-div#weather > div#forecast { 
+span#current-container > div#forecast, span#forecast-container > div#forecast { 
     display: inline-block;
     width: calc(100% / var(--weather-num-blocks));
+    vertical-align: top;
 }
 
-div#weather > div#forecast > span#time {
+div#forecast > span#time {
     display: block;
 }
 
