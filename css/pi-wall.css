@@ -59,15 +59,27 @@ div#calendar-row webview#calendar-webview {
 
 /* ========================================== */
 
+
+div#datetime {
+    font-size: 50pt;
+    font-weight: 100;
+}
+
+div#datetime #divider {
+    color: #999;
+}
+
 div#datetime #date{
-    font-size: 26pt;
+    /* font-size: 26pt; */
     text-transform: uppercase;
     font-weight: 700;
+    padding-right:20px;
 }
 
 div#datetime #time {
-    font-size: 24pt;
+    /* font-size: 24pt; */
     font-weight: 200;
+    padding-left:20px;
 }
 
 div#weather {
