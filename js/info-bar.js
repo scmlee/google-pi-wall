@@ -12,7 +12,7 @@
     var request = require('request');
 
     function updateDateTime() {
-        document.querySelector("#datetime #date").innerText = moment().format("dddd, MMMM D YYYY");
+        document.querySelector("#datetime #date").innerText = moment().format("dddd, MMMM D");
         document.querySelector("#datetime #time").innerText = moment().format("h:mm A");
     }
 

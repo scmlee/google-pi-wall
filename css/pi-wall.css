@@ -67,7 +67,7 @@ div#datetime #date{
 
 div#datetime #time {
     font-size: 24pt;
-    font-weight: 400;
+    font-weight: 200;
 }
 
 div#weather {
@@ -78,7 +78,7 @@ div#weather {
 
 span#current-container > div#forecast, span#forecast-container > div#forecast { 
     display: inline-block;
-    width: calc(100% / var(--weather-num-blocks));
+    width: calc(95% / var(--weather-num-blocks));
     vertical-align: top;
 }
 
