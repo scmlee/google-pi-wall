@@ -8,7 +8,9 @@
   },
   "author": "scmlee",
   "repository": "https://github.com/scmlee/pi-wall",
-  "devDependencies": {},
+  "devDependencies": {
+    "electron-rebuild": "^1.7.3"
+  },
   "dependencies": {
     "debug-http": "^1.1.0",
     "electron": "~1.7.1",
