@@ -27,7 +27,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    //kiosk: true
+    kiosk: false
   })
 
   // and load the index.html of the app.
@@ -38,11 +38,11 @@ function createWindow () {
   }))
 
   //Maximize the window
- // mainWindow.setFullScreen(true);
-  mainWindow.maximize();
+  mainWindow.setFullScreen(true);
+  //mainWindow.maximize();
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools(); //{ mode : "undocked"});
+   // mainWindow.webContents.openDevTools(); //{ mode : "undocked"});
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
