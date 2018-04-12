@@ -39,24 +39,12 @@ function createWindow() {
         slashes: true
     }))
 
-    <<
-    << << < HEAD
-    //Maximize the window
-    // mainWindow.setFullScreen(true);
-    mainWindow.maximize();
-
-    // Open the DevTools.
-    mainWindow.webContents.openDevTools(); //{ mode : "undocked"});
-    ===
-    === =
     //Maximize the window
     mainWindow.setFullScreen(true);
     //mainWindow.maximize();
 
     // Open the DevTools.
     // mainWindow.webContents.openDevTools(); //{ mode : "undocked"});
-    >>>
-    >>> > 5 cc59e383232d346c75833015062fe68ef358224
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function() {
