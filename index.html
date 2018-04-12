@@ -27,15 +27,32 @@
             </div>
         </div>
         <div id="calendar-row">
-            <webview id="calendar-webview" class="full-width-height" src="https://calendar.google.com/calendar/r" autoresize></webview>
+            <webview webpreferences="zoomFactor=3.0" autoresize id="calendar-webview" class="full-width-height" src="https://calendar.google.com/calendar/r"></webview>
         </div>
     </div>
 
     <script>
         // You can also require other files to run in this process
         require('./js/info-bar.js');
-        require('./js/motion-sensor.js');
-        require('./renderer.js');
+
+        const logger = require("electron-timber");
+        const webview = document.querySelector('#calendar-webview');
+        webview.addEventListener('dom-ready', () => {
+            webview.focus();
+
+            //Zoom in a bit so that the text is bigger
+            webview.setZoomFactor(1.5);
+
+            setTimeout(function() {
+                logger.log("Sending key '4' to force custom Calendar view");
+
+                webview.sendInputEvent({
+                    type: "char",
+                    keyCode: "4"
+                });
+            }, 2000);
+
+        });
     </script>
 </body>
 
