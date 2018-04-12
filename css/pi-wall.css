@@ -1,14 +1,15 @@
 :root {
     --info-row-size: 10%;
     --weather-num-blocks: 5;
-  }
+}
 
 .full-width-height {
     width: 100%;
     height: 100%;
 }
 
-html,body {
+html,
+body {
     width: 100%;
     height: 100%;
     margin: 0px;
@@ -21,11 +22,9 @@ html,body {
 html#main-html {
     width: calc(100% - (20px * 2));
     height: calc(100% - (20px * 2));
-
     padding: 20px;
     font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
     font-size: 12px;
-
     overflow: hidden;
 }
 
@@ -34,7 +33,7 @@ div#info-row {
     height: var(--info-row-size);
 }
 
-div#info-row > div {
+div#info-row>div {
     float: left;
     height: 100%;
 }
@@ -59,27 +58,27 @@ div#calendar-row webview#calendar-webview {
 
 /* ========================================== */
 
-
 div#datetime {
     font-size: 50pt;
     font-weight: 100;
 }
 
 div#datetime #divider {
-    color: #999;
+    border-left: 2px solid #ccc;
 }
 
-div#datetime #date{
+div#datetime #date {
     /* font-size: 26pt; */
     text-transform: uppercase;
     font-weight: 700;
-    padding-right:20px;
+    padding-right: 20px;
 }
 
 div#datetime #time {
     /* font-size: 24pt; */
+    color: #999;
     font-weight: 200;
-    padding-left:20px;
+    padding-left: 20px;
 }
 
 div#weather {
@@ -88,41 +87,42 @@ div#weather {
     font-weight: 100;
 }
 
-span#current-container > div#forecast, span#forecast-container > div#forecast { 
+span#current-container>div#forecast,
+span#forecast-container>div#forecast {
     display: inline-block;
     width: calc(95% / var(--weather-num-blocks));
     vertical-align: top;
 }
 
-div#forecast > span#time {
+div#forecast>span#time {
     display: block;
 }
 
-div#forecast.current > span#temp {
+div#forecast.current>span#temp {
     font-size: 3em;
 }
 
-div#forecast > span#time {
+div#forecast>span#time {
     font-size: 10pt;
 }
 
-div#forecast > span#temp{
+div#forecast>span#temp {
     font-size: 2em;
     font-weight: 300;
 }
 
-div#forecast > span#temp > span#temp-units {
+div#forecast>span#temp>span#temp-units {
     display: inline;
     font-size: 0.8em;
     vertical-align: top;
     font-weight: 100;
 }
 
-div#forecast > span#weather{
+div#forecast>span#weather {
     font-size: 8pt;
 }
 
-div#forecast > span#weather > i.wi {
+div#forecast>span#weather>i.wi {
     font-size: 3em;
     color: #AAA;
 }
