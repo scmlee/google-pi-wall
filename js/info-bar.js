@@ -78,7 +78,7 @@
 
             //console.log(forecastDetails);
             forecastWeatherDiv += "<div id=\"forecast\">";
-            forecastWeatherDiv += "<span id=\"time\">" + moment(forecastDetails.dt, "X").fromNow() + "</span>";
+            forecastWeatherDiv += "<span id=\"time\">" + moment(forecastDetails.dt, "X").format("LT") + "</span>";
             forecastWeatherDiv += "<span id=\"temp\">" + Math.round(forecastDetails.main.temp) + "<span id=\"temp-units\">&deg;</span></span>";
             forecastWeatherDiv += "<span id=\"weather\" desc=\"" + forecastDetails.weather[0].id + "\"><i class=\"" + getWeatherIconClass(forecastDetails.weather[0].id) + "\"></i></span>";
             forecastWeatherDiv += "</div>"
