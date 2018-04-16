@@ -27,7 +27,7 @@
             </div>
         </div>
         <div id="calendar-row">
-            <webview webpreferences="zoomFactor=3.0" autoresize id="calendar-webview" class="full-width-height" src="https://calendar.google.com/calendar/r"></webview>
+            <webview autoresize id="calendar-webview" class="full-width-height" src="https://calendar.google.com/calendar/r"></webview>
         </div>
     </div>
 
@@ -41,7 +41,7 @@
             webview.focus();
 
             //Zoom in a bit so that the text is bigger
-            webview.setZoomFactor(1.5);
+            webview.setZoomFactor(1.4);
 
             setTimeout(function() {
                 logger.log("Sending key '4' to force custom Calendar view");

@@ -17,11 +17,6 @@
     "electron-timber": "^0.4.0",
     "moment": "^2.21.0",
     "npm": "^5.8.0",
-    "openweather-apis": "^3.3.5",
     "request": "^2.85.0"
-  },
-  "optionalDependencies": {
-    "johnny-five": "^0.14.1",
-    "raspi-io": "^8.1.0"
   }
 }

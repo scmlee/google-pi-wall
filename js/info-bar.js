@@ -73,12 +73,12 @@
         var forecastWeatherDiv = "";
         var currForecastIter = 0;
 
-        for (currForecastIter = 0; currForecastIter < numPeriodsToForecast; currForecastIter++) {
+        for (currForecastIter = 0; currForecastIter < (numPeriodsToForecast * 4); currForecastIter += 4) {
             forecastDetails = forecastOpenWeatherObj.list[currForecastIter];
 
             //console.log(forecastDetails);
             forecastWeatherDiv += "<div id=\"forecast\">";
-            forecastWeatherDiv += "<span id=\"time\">" + moment(forecastDetails.dt, "X").format("LT") + "</span>";
+            forecastWeatherDiv += "<span id=\"time\">" + moment(forecastDetails.dt, "X").calendar() + "</span>";
             forecastWeatherDiv += "<span id=\"temp\">" + Math.round(forecastDetails.main.temp) + "<span id=\"temp-units\">&deg;</span></span>";
             forecastWeatherDiv += "<span id=\"weather\" desc=\"" + forecastDetails.weather[0].id + "\"><i class=\"" + getWeatherIconClass(forecastDetails.weather[0].id) + "\"></i></span>";
             forecastWeatherDiv += "</div>"

@@ -9,12 +9,10 @@
     weather.setLang('en');
     weather.setCityId(6167865);
     weather.setUnits('metric');
-    weather.setAPPID(process.env.openweather_api_key); //"dde2509e29d41e5299304dad3099db68");
-
+    weather.setAPPID(process.env.openweather_api_key);
     var request = require('request');
     request({
-        'url': 'http://api.openweathermap.org/data/2.5/weather?id=6167865&units=metric&lang=en&mode=json&APPID=dde2509e29d41e5299304dad3099db68',
-        'proxy': 'http://gateway.bns:8000'
+        'url': 'http://api.openweathermap.org/data/2.5/forecast?id=6167865&units=metric&lang=en&mode=json&APPID=' + process.env.openweather_api_key,
         }, function(error, response, body) {
         console.log('error:', error); // Print the error if one occurred
         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
